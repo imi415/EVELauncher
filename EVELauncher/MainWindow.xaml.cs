@@ -73,55 +73,68 @@ namespace EVELauncher
             userPass.Password = "";
         }
 
-        private void loginButtonClick(object sender, RoutedEventArgs e)
+        private async void loginButtonClick(object sender, RoutedEventArgs e)
         {
-            string accessToken;
-            if (String.IsNullOrEmpty(userName.Text) == false || String.IsNullOrEmpty(userPass.Password) == false)
-            {
-                if (saveUserName.IsChecked == true)
+            await Task.Run(() =>
                 {
-                    userSaveFile.userName = userName.Text;
-                    if (savePassword.IsChecked == true)
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        userSaveFile.userPass = userPass.Password;
-                    }
-                }
-                if (String.IsNullOrEmpty(gameExePath.Text) == false)
-                {
-                    userSaveFile.path = gameExePath.Text;
-                    File.WriteAllText(temp + @"\fakeEveLauncher.json", JsonConvert.SerializeObject(userSaveFile));
-                        accessToken = eveConnection.getAccessToken(userName.Text, userPass.Password);
-                        if (accessToken == "netErr")
+                        loginButton.IsEnabled = false;
+                        loginButton.Content = "正在登录…";
+                    }));
+                    string accessToken;
+                    if (String.IsNullOrEmpty(userName.Text) == false || String.IsNullOrEmpty(userPass.Password) == false)
+                    {
+                        if (saveUserName.IsChecked == true)
                         {
-                            MessageBox.Show("登录失败，网络错误","错误",MessageBoxButton.OK,MessageBoxImage.Error);
-                        }
-                        else
-                        {
-                            if (String.IsNullOrEmpty(accessToken) == false)
+                            userSaveFile.userName = userName.Text;
+                            if (savePassword.IsChecked == true)
                             {
-                                Process.Start(gameExePath.Text, "/noconsole /ssoToken=" + accessToken);
-                                if (exitAfterLaunch.IsChecked == true)
-                                {
-                                    userSaveFile.isCloseAfterLaunch = true;
-                                    File.WriteAllText(temp + @"\fakeEveLauncher.json", JsonConvert.SerializeObject(userSaveFile));
-                                    this.Close();
-                                }
+                                userSaveFile.userPass = userPass.Password;
+                            }
+                        }
+                        if (String.IsNullOrEmpty(gameExePath.Text) == false)
+                        {
+                            userSaveFile.path = gameExePath.Text;
+                            File.WriteAllText(temp + @"\fakeEveLauncher.json", JsonConvert.SerializeObject(userSaveFile));
+                            accessToken = eveConnection.getAccessToken(userName.Text, userPass.Password);
+                            if (accessToken == "netErr")
+                            {
+                                MessageBox.Show("登录失败，网络错误", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                             else
                             {
-                                MessageBox.Show("登录失败，用户名或密码错误", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                                if (String.IsNullOrEmpty(accessToken) == false)
+                                {
+                                    Process.Start(gameExePath.Text, "/noconsole /ssoToken=" + accessToken);
+                                    if (exitAfterLaunch.IsChecked == true)
+                                    {
+                                        userSaveFile.isCloseAfterLaunch = true;
+                                        File.WriteAllText(temp + @"\fakeEveLauncher.json", JsonConvert.SerializeObject(userSaveFile));
+                                        this.Close();
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("登录失败，用户名或密码错误", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
                             }
                         }
-                }
-                else
-                {
-                    MessageBox.Show("请指定主执行程序路径", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("请填写用户名和密码", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                        else
+                        {
+                            MessageBox.Show("请指定主执行程序路径", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("请填写用户名和密码", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        loginButton.IsEnabled = true;
+                        loginButton.Content = "登录";
+                    }));
+                });
         }
 
         private void choosePathClick(object sender, RoutedEventArgs e)
