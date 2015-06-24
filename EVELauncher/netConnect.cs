@@ -99,9 +99,8 @@ namespace EVELauncher
                 getResponse.Close();
                 return XMLResponse;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
                 return "netErr";
             }
         }

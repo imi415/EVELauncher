@@ -33,6 +33,7 @@ namespace EVELauncher
         public string userName { get; set; }
         public string userPass { get; set; }
         public bool isCloseAfterLaunch { get; set; }
+        public bool isDX9Choosed { get; set; }
         public void Write(string Path,string ContentJson)
         {
             File.WriteAllText(Path, ContentJson);
