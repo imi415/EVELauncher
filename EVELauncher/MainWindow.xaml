@@ -20,8 +20,8 @@
             <Grid HorizontalAlignment="Left" Height="177" Margin="10,0,-2,-12" VerticalAlignment="Top" Width="402">
                 <TextBox x:Name="userName" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189" Margin="96,34,0,0"/>
                 <PasswordBox x:Name="userPass" HorizontalAlignment="Left" Margin="96,59,0,0" VerticalAlignment="Top" Width="189" Height="20"/>
-                <Button x:Name="loginClear" Content="清除" HorizontalAlignment="Left" Margin="188,147,0,0" VerticalAlignment="Top" Width="97" Height="20" Click="loginClearClick"/>
-                <Button x:Name="loginButton" Content="登录" HorizontalAlignment="Left" Margin="290,147,0,0" VerticalAlignment="Top" Width="97" Height="20" Click="loginButtonClick"/>
+                <Button x:Name="loginClear" Content="清除" HorizontalAlignment="Left" Margin="290,123,0,0" VerticalAlignment="Top" Width="97" Height="20" Click="loginClearClick"/>
+                <Button x:Name="loginButton" Content="启动游戏" HorizontalAlignment="Left" Margin="290,147,0,0" VerticalAlignment="Top" Width="97" Height="20" Click="loginButtonClick" IsEnabled="False"/>
                 <Button x:Name="choosePath" Content="打开" HorizontalAlignment="Left" Margin="290,10,0,0" VerticalAlignment="Top" Width="97" Height="20" Click="choosePathClick"/>
                 <TextBox x:Name="gameExePath" HorizontalAlignment="Left" Height="20" Margin="96,9,0,0" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Top" Width="189" IsReadOnlyCaretVisible="True"/>
                 <Label Content="用户名或邮箱" HorizontalAlignment="Left" Margin="14,30,0,0" VerticalAlignment="Top"/>
@@ -33,6 +33,8 @@
                 <Label Content="渲染模式：" HorizontalAlignment="Left" Margin="134,88,0,0" VerticalAlignment="Top" ToolTip=""/>
                 <RadioButton x:Name="radioButtonDX9" Content="DX9（兼容模式）" HorizontalAlignment="Left" Margin="209,94,0,0" VerticalAlignment="Top" Width="115" Click="radioButtonDX9Clicked" ToolTip="注：默认为DirectX 11渲染，若显卡不支持DirectX 11，请选择DirectX 9模式。"/>
                 <RadioButton x:Name="radioButtonDX11" Content="DX11" HorizontalAlignment="Left" Margin="337,94,0,0" VerticalAlignment="Top" IsChecked="True" Click="radioButtonDX11Clicked" ToolTip=""/>
+                <Button x:Name="launcherLoginButton" Content="登录" HorizontalAlignment="Left" Margin="85,123,0,0" VerticalAlignment="Top" Width="96" Click="launcherLoginClick" Height="20"/>
+                <Button x:Name="launcherLogOutButton" Content="更换账号（注销）" HorizontalAlignment="Left" Margin="189,123,0,0" VerticalAlignment="Top" Width="96" Click="launcherLogOutClick" Height="20"/>
             </Grid>
         </GroupBox>
 
