@@ -35,6 +35,7 @@ namespace EVELauncher
         string saveFileJson;
         saveFile userSaveFile = new saveFile();
         string temp = System.IO.Path.GetTempPath();
+        bool isLoggedIn = false;
         netConnect eveConnection = new netConnect();
         public MainWindow()
         {
@@ -180,7 +181,10 @@ namespace EVELauncher
                 if (status.eveApi.result.serverOpen == "True")
                 {
                     Application.Current.Dispatcher.BeginInvoke(new Action(() => serverStatusLabel.Content = "开启"));
-                    Application.Current.Dispatcher.BeginInvoke(new Action(() => launcherLoginButton.IsEnabled = true));
+                    if (isLoggedIn == false)
+                    {
+                        Application.Current.Dispatcher.BeginInvoke(new Action(() => launcherLoginButton.IsEnabled = true));
+                    }
                 }
                 else
                 {
@@ -267,6 +271,7 @@ namespace EVELauncher
                                 Application.Current.Dispatcher.BeginInvoke(new Action(() => enableLoginControls(false)));
                                 eveConnection.LauncherAccessToken = accessToken;
                                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>loginButton.IsEnabled = true));
+                                isLoggedIn = true;
                             }
                         }
                     });
@@ -274,16 +279,20 @@ namespace EVELauncher
                 else
                 {
                     MessageBox.Show("请指定主执行程序路径", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                    enableLoginControls(true);
+                    launcherLoginButton.Content = "登录";
                 }
             }
             else
             {
                 MessageBox.Show("请填写用户名和密码", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                enableLoginControls(true);
+                launcherLoginButton.Content = "登录";
             }
         }
-        public void enableLoginControls(bool IsEnabled)
+        public void enableLoginControls(bool isEnabled)
         {
-            if (IsEnabled == true)
+            if (isEnabled == true)
             {
                 userName.IsEnabled = true;
                 userPass.IsEnabled = true;
@@ -307,6 +316,7 @@ namespace EVELauncher
             enableLoginControls(true);
             launcherLoginButton.Content = "登录";
             loginButton.IsEnabled = false;
+            isLoggedIn = false;
         }
         public void saveAllData()
         {

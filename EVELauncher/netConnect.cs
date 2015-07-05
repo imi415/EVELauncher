@@ -59,7 +59,6 @@ namespace EVELauncher
                 firstLoginResponse = loginResponseStreamReader.ReadToEnd();
                 loginResponseStreamReader.Close();
                 loginResponse.Close();
-                loginPostStream.Close();
                 //第二个是Get请求，用于获取Access-Token。
                 HttpWebRequest loginGetRequest = (HttpWebRequest)WebRequest.Create(new Uri("https://auth.eve-online.com.cn/oauth/authorize?client_id=eveLauncherSerenity&lang=zh&response_type=token&redirect_uri=https://auth.eve-online.com.cn/launcher?client_id=eveLauncherSerenity&scope=eveClientToken%20user"));
                 loginGetRequest.CookieContainer = userCookieContainer;
