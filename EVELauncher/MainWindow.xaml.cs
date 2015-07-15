@@ -1,8 +1,19 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Security;
+using System.Security.Authentication;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,18 +23,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Win32;
-using System.Net;
-using System.Web;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
-using System.Net.Security;
-using System.Security.Authentication;
-using System.Text.RegularExpressions;
-using System.Diagnostics;
-using Newtonsoft.Json;
 using System.Xml;
-using System.Threading;
 
 namespace EVELauncher
 {
@@ -163,7 +163,9 @@ namespace EVELauncher
             saveUserName.IsChecked = true;
         }
 
-        //异步发送更新请求，委托更新状态控件
+        /// <summary>
+        /// 异步发送更新请求，委托更新状态控件
+        /// </summary>
         public async void updateServerStatus()
         {
             await Task.Run(() =>
@@ -203,6 +205,11 @@ namespace EVELauncher
                 }
             });
         }
+
+        /// <summary>
+        /// 是否使用DX9兼容模式渲染
+        /// </summary>
+        /// <param name="RenderMode"></param>
         public void useDX9RenderMode(bool RenderMode)
         {
             if (RenderMode == true)
@@ -290,6 +297,11 @@ namespace EVELauncher
                 launcherLoginButton.Content = "登录";
             }
         }
+
+        /// <summary>
+        /// 更改控件可用状态
+        /// </summary>
+        /// <param name="isEnabled"></param>
         public void enableLoginControls(bool isEnabled)
         {
             if (isEnabled == true)
@@ -318,6 +330,10 @@ namespace EVELauncher
             loginButton.IsEnabled = false;
             isLoggedIn = false;
         }
+
+        /// <summary>
+        /// 保存全部数据并写入到文件
+        /// </summary>
         public void saveAllData()
         {
             userSaveFile.userName = userName.Text;
