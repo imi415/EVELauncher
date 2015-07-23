@@ -250,6 +250,10 @@ namespace EVELauncher
                     {
                         userSaveFile.userPass = userPass.Password;
                     }
+					else
+					{
+						userSaveFile.userPass = "";
+					}
                 }
                 if (String.IsNullOrEmpty(gameExePath.Text) == false)
                 {
