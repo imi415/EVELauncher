@@ -329,6 +329,8 @@ namespace EVELauncher
         private void launcherLogOutClick(object sender, RoutedEventArgs e)
         {
             eveConnection.LauncherAccessToken = "";
+			userName.Text="";
+			userPass.Password="";
             enableLoginControls(true);
             launcherLoginButton.Content = "登录";
             loginButton.IsEnabled = false;
