@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="EVE山寨启动器" Height="446" Width="456" ResizeMode="CanMinimize" Icon="Resources/icon.ico">
     <Grid>
-        <Button x:Name="aboutButton" Content="关于" HorizontalAlignment="Left" Margin="10,351,0,0" VerticalAlignment="Top" Width="75" Click="aboutClick"/>
-        <GroupBox Header="服务器状态" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="129" Width="422">
-            <Grid HorizontalAlignment="Left" Height="109" Margin="10,0,-2,-2" VerticalAlignment="Top" Width="402">
+        <Button x:Name="aboutButton" Content="关于" HorizontalAlignment="Left" Margin="10,388,0,0" VerticalAlignment="Top" Width="75" Click="aboutClick"/>
+        <GroupBox Header="服务器状态" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="167" Width="422">
+            <Grid HorizontalAlignment="Left" Margin="10,0,-2,-2" Width="402">
                 <Label Content="服务器状态：" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="serverStatusLabel" Content="" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" Width="60"/>
                 <Label Content="在线玩家数：" HorizontalAlignment="Left" Margin="23,35,0,0" VerticalAlignment="Top" Width="82"/>
@@ -14,10 +14,13 @@
                 <Label x:Name="lastUpdateLabel" Content="" HorizontalAlignment="Left" Margin="110,65,0,0" VerticalAlignment="Top" Width="282"/>
                 <Button x:Name="serverStateRefreshButton" Content="刷新" HorizontalAlignment="Left" Margin="317,10,0,0" VerticalAlignment="Top" Width="75" Click="serverStateRefresh"/>
                 <Label x:Name="refreshStatus" Content="" HorizontalAlignment="Left" Margin="275,34,0,0" VerticalAlignment="Top" Width="117" TextOptions.TextHintingMode="Animated" HorizontalContentAlignment="Right"/>
+                <Label x:Name="clientVersionLabel" Content="" HorizontalAlignment="Left" Margin="11,95,0,0" VerticalAlignment="Top" Width="342" VerticalContentAlignment="Center" Height="25"/>
+                <Label x:Name="sharedCacheLocationLabel" Content="" HorizontalAlignment="Left" Margin="23,120,0,0" VerticalAlignment="Top" Width="342"/>
+
             </Grid>
         </GroupBox>
-        <GroupBox Header="登录" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top" Height="201" Width="422">
-            <Grid HorizontalAlignment="Left" Height="191" Margin="10,0,-2,-12" VerticalAlignment="Top" Width="402">
+        <GroupBox Header="登录" HorizontalAlignment="Left" Margin="10,182,0,0" VerticalAlignment="Top" Height="201" Width="422">
+            <Grid HorizontalAlignment="Left" Margin="10,0,-2,-12" Width="402">
                 <TextBox x:Name="userName" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189" Margin="96,34,0,0"/>
                 <PasswordBox x:Name="userPass" HorizontalAlignment="Left" Margin="96,59,0,0" VerticalAlignment="Top" Width="189" Height="20"/>
                 <Button x:Name="loginClear" Content="清除" HorizontalAlignment="Left" Margin="290,123,0,0" VerticalAlignment="Top" Width="97" Height="20" Click="loginClearClick"/>
@@ -37,8 +40,5 @@
                 <Button x:Name="launcherLogOutButton" Content="更换账号（注销）" HorizontalAlignment="Left" Margin="189,123,0,0" VerticalAlignment="Top" Width="96" Click="launcherLogOutClick" Height="20"/>
             </Grid>
         </GroupBox>
-        <Label x:Name="clientVersionLabel" Content="" HorizontalAlignment="Left" Margin="90,350,0,0" VerticalAlignment="Top" Width="342" VerticalContentAlignment="Center" Height="25"/>
-        <Label x:Name="sharedCacheLocationLabel" Content="" HorizontalAlignment="Left" Margin="90,380,0,0" VerticalAlignment="Top" Width="342"/>
-
     </Grid>
 </Window>
